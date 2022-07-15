@@ -23,7 +23,7 @@ class Application:
         """Get a new Notification object."""
         if not self.user_token:
             raise ValueError("No user token set.")
-        kwargs |= self.notification_params
+        kwargs.update(self.notification_params)
         return Notification(self, **kwargs)
 
     def _sync_request(
