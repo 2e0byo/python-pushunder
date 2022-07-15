@@ -1,7 +1,12 @@
 from typing import Optional
 
-import aiohttp
-import requests
+try:
+    from micropython import const
+
+    upy = True
+except ImportError:
+    const = lambda x: x
+    upy = False
 
 
 class Application:
@@ -29,6 +34,10 @@ class Application:
         params: Optional[dict] = None,
         data: Optional[dict] = None,
     ) -> dict:
+        if upy:
+            import urequests as requests
+        else:
+            import requests
         resp = requests.request(method, url, params=params, data=data)
         resp.raise_for_status()
         return resp.json()
@@ -40,6 +49,10 @@ class Application:
         params: Optional[dict] = None,
         data: Optional[dict] = None,
     ) -> dict:
+        if upy:
+            import uaiohttpclient as aiohttp
+        else:
+            import aiohttp
         async with aiohttp.ClientSession() as session:
             resp = await session.request(method, url, params=params, data=data)
             resp.raise_for_status()
