@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "python-pushunder"
+version = "0.1.0"
+description = "Object Oriented asyncio and sync python/micropython bindings for pushover.net."
+authors = ["John Maximilian <2e0byo@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+aiohttp = {extras = ["speedups"], version = "^3.8.1"}
+
+[tool.poetry.dev-dependencies]
+pytest = "pytest-sugar"
+pytest-asyncio = "^0.19.0"
+pytest-mock = "^3.8.2"
+pytest-sugar = "^0.9.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
