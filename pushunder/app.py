@@ -1,5 +1,3 @@
-from typing import Optional
-
 try:
     from micropython import const
 
@@ -15,7 +13,7 @@ class Application:
     URL_BASE = "https://api.pushover.net"
     API_VERSION = "1"
 
-    def __init__(self, app_token: str, user_token: Optional[str] = None):
+    def __init__(self, app_token: str, user_token: "str | None" = None):
         """Initialise a new application."""
         self.app_token = app_token
         self.user_token = user_token
@@ -32,8 +30,8 @@ class Application:
         self,
         method: str,
         url: str,
-        params: Optional[dict] = None,
-        data: Optional[dict] = None,
+        params: "dict | None" = None,
+        data: "dict | None" = None,
     ) -> dict:
         if upy:
             import urequests as requests
@@ -47,8 +45,8 @@ class Application:
         self,
         method: str,
         url: str,
-        params: Optional[dict] = None,
-        data: Optional[dict] = None,
+        params: "dict | None" = None,
+        data: "dict | None" = None,
     ) -> dict:
         if upy:
             import uaiohttpclient as aiohttp
