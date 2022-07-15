@@ -68,7 +68,8 @@ class Application:
 
     def _add_tokens(self, **kwargs):
         data = dict(token=self.app_token, user=self.user_token)
-        return data | kwargs
+        data.update(kwargs)
+        return data
 
     def _sync_push_msg(self, **kwargs):
         return self._sync_request(
@@ -105,7 +106,7 @@ class Notification:
             retry=60,
             expire=3600,
         )
-        self.payload |= kwargs
+        self.payload.update(kwargs)
         self.receipt = None
         self._last_poll = None
         self.app = app
